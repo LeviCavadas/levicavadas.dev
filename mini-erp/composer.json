@@ -1,0 +1,27 @@
+{
+  "name": "levicavadas/mini-erp",
+  "description": "Mini ERP backend for levicavadas.dev",
+  "type": "project",
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MiniErp\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MiniErp\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "migrate": "php scripts/migrate.php",
+    "seed": "php scripts/seed.php",
+    "admin": "php scripts/create-admin.php",
+    "test": "phpunit"
+  }
+}

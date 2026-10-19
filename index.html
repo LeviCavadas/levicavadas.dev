@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de Levi Cavadas com projetos, tecnologias, experiência e meios de contato." />
+    <meta property="og:title" content="Levi Cavadas | Desenvolvimento de software" />
+    <meta property="og:description" content="Portfólio pessoal com foco em desenvolvimento de software, projetos práticos e tecnologias." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.svg" />
+    <meta name="theme-color" content="#111827" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Levi Cavadas | Desenvolvimento de software</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        const key = 'portfolio-theme'
+        const storedTheme = localStorage.getItem(key)
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : prefersDark ? 'dark' : 'light'
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: Mini ERP API
+  version: 1.0.0
+  description: API REST do Mini ERP para gestão administrativa.
+servers:
+  - url: http://localhost:8080/api/v1
+paths:
+  /health:
+    get:
+      summary: Verifica se a API está funcionando
+      responses:
+        '200':
+          description: Status operacional
+  /auth/login:
+    post:
+      summary: Login do usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login realizado com sucesso
+        '401':
+          description: Credenciais inválidas
+  /users:
+    get:
+      summary: Lista usuários
+      responses:
+        '200':
+          description: Usuários retornados
+    post:
+      summary: Cria usuário
+      responses:
+        '201':
+          description: Usuário criado
+  /clients:
+    get:
+      summary: Lista clientes
+    post:
+      summary: Cria cliente
+  /products:
+    get:
+      summary: Lista produtos
+    post:
+      summary: Cria produto
+  /products/{id}/stock/movement:
+    post:
+      summary: Registra movimentação de estoque
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /sales:
+    get:
+      summary: Lista vendas
+    post:
+      summary: Cria nova venda
+  /dashboard/summary:
+    get:
+      summary: Resumo do dashboard
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object

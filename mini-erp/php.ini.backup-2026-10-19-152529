@@ -1,0 +1,14 @@
+[PHP]
+extension_dir = "C:/Users/levic/AppData/Local/Microsoft/WinGet/Packages/PHP.PHP.8.4_Microsoft.WinGet.Source_8wekyb3d8bbwe/ext"
+extension = curl
+extension = fileinfo
+extension = mbstring
+extension = openssl
+extension = pdo_mysql
+extension = zip
+date.timezone = "America/Sao_Paulo"
+display_errors = On
+error_reporting = E_ALL
+log_errors = On
+memory_limit = 512M
+session.save_path = "C:/Users/levic/AppData/Local/Temp"
