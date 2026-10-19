@@ -2,55 +2,63 @@
 
 ## Visão geral
 
-Este projeto é o portfólio pessoal de Levi Cavadas, hospedado no domínio `levicavadas.dev`. O objetivo do site é apresentar a identidade profissional, o histórico relevante, os projetos em desenvolvimento e os canais de contato de forma direta e fácil de manter.
+Este repositório contém o portfólio pessoal de Levi Cavadas. O objetivo do site é apresentar o perfil profissional, experiências relevantes, projetos em destaque, tecnologias e canais de contato de forma organizada e fácil de manter.
 
-A implementação foi pensada para ser atualizada sem reescrever a estrutura visual. Os textos, tecnologias, experiências, projetos e links sociais ficam centralizados em arquivos de dados e podem ser alterados em poucos pontos.
+A aplicação é estruturada como um frontend em React + TypeScript com dados centralizados em arquivos do diretório `src/data/`. Em vez de fixar conteúdo diretamente em componentes, o projeto usa uma abordagem baseada em configuração e dados para facilitar atualização e manutenção.
 
-O portfólio também integra a documentação e a demo do projeto Mini ERP, que fica em `mini-erp/` e é tratada como uma demonstração separada da aplicação principal em React + TypeScript.
+Além do portfólio, o repositório inclui uma demonstração do projeto Mini ERP em `mini-erp/`, que funciona como uma subaplicação separada e não é parte da navegação principal do site.
 
-## Objetivos
+## Objetivo do projeto
 
-- Apresentar o perfil de desenvolvimento de software de forma clara;
-- Organizar projetos, tecnologias e experiências em uma única interface;
-- Manter conteúdo pronto para crescer ao longo do tempo;
-- Exibir seções de GitHub e LinkedIn apenas quando houver dados válidos;
-- Deixar os projetos e experiências acessíveis sem depender de APIs externas.
+- Apresentar o perfil de desenvolvimento de software de forma clara e direta;
+- Organizar projetos, experiências e tecnologias em uma única interface;
+- Exibir o portfólio com navegação e layout responsivo;
+- Centralizar textos e links em arquivos de dados;
+- Incluir uma demonstração do Mini ERP com dados fictícios e leitura restrita.
 
-## Funcionalidades
+## Tecnologias utilizadas
 
-- Navegação principal com oito destinos reais: Home, Sobre, Experiência, Projetos, Tecnologias, GitHub, LinkedIn e Contato;
-- Hero section com apresentação profissional, ações principais e links sociais condicionais;
-- Seção Sobre em texto direto, sem informações inventadas;
-- Histórico de experiências organizado em linha do tempo;
-- Grid de projetos com cartões reutilizáveis e estados vazios;
-- Página de detalhes por slug para cada projeto;
-- Seção de tecnologias organizada por categoria;
-- Área de GitHub e LinkedIn com estados informativos quando os links ainda não estão configurados;
-- Rodapé com navegação essencial e links externos configurados centralmente;
-- Projeto Mini ERP registrado com rota de demo demonstrativa e documentação complementar em `mini-erp/`;
-- Alternância entre tema claro e escuro com persistência local e preferência do sistema como padrão.
+O portfólio usa as tecnologias confirmadas no código e nos arquivos de configuração do projeto:
 
-## Tema do portfólio
-
-O site usa um tema claro por padrão, mas respeita a preferência do sistema quando o usuário ainda não escolheu manualmente uma opção. A escolha do usuário é salva em `localStorage` e reaproveitada em visitas futuras.
-
-A lógica do tema é aplicada no `document.documentElement` por meio do atributo `data-theme`, e a configuração inicial também é carregada diretamente em `index.html` para evitar flash visual ao abrir a página.
-
-## Tecnologias do portfólio
-
-- React
+- React 19
 - TypeScript
 - Vite
 - React Router DOM
-- ESLint
+- CSS customizado com variáveis de tema
+- ESLint para validação estática
 
-## Arquitetura do projeto
+A subaplicação Mini ERP em `mini-erp/` usa um conjunto complementar de tecnologias dentro do próprio workspace:
+
+- PHP 8.x
+- PDO
+- MySQL
+- Composer
+- PHPUnit
+- API REST em PHP
+
+## Funcionalidades implementadas
+
+O site atual implementa as seguintes partes verificadas no código:
+
+- página inicial com apresentação profissional, navegação e seções principais;
+- seção de sobre o perfil e forma de trabalho;
+- linha do tempo de experiências com dados configuráveis;
+- grid de projetos com páginas de detalhe por slug;
+- área de tecnologias organizada por categoria;
+- bloco de GitHub e LinkedIn com renderização condicional do conteúdo;
+- seção de contato com links e e-mail quando disponíveis;
+- rodapé com marca, navegação e redes sociais;
+- alternância entre tema claro e escuro com persistência em `localStorage`;
+- rota de demonstração para o Mini ERP com dados fictícios e aviso de modo somente leitura.
+
+A demo do Mini ERP, em `src/pages/ProjectDemoPage.tsx`, é demonstrativa e não permite alteração de estado: ela navega por um conjunto de dados fictícios e exibe um banner informando que a operação é somente leitura.
+
+## Arquitetura e organização do código
 
 ```text
 .
 ├── public/
-│   ├── favicon.svg
-│   └── robots.txt
+│   └── assets estáticos do site
 ├── src/
 │   ├── components/
 │   │   ├── layout/
@@ -69,194 +77,89 @@ A lógica do tema é aplicada no `document.documentElement` por meio do atributo
 │   │   └── technologies.ts
 │   ├── pages/
 │   │   ├── HomePage.tsx
-│   │   └── ProjectDetailsPage.tsx
+│   │   ├── ProjectDetailsPage.tsx
+│   │   └── ProjectDemoPage.tsx
 │   ├── types/
 │   │   └── project.ts
 │   ├── App.css
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
-├── .env.example
+├── mini-erp/
+│   ├── README.md
+│   ├── public/
+│   ├── src/
+│   ├── routes/
+│   ├── database/
+│   ├── docs/
+│   └── tests/
 ├── .gitignore
 ├── index.html
 ├── package.json
 ├── README.md
 ├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
 ├── vite.config.ts
-└── CLAUDE.md
+└── eslint.config.js
 ```
 
-Pontos importantes:
+### Pontos importantes da arquitetura
 
-- `src/data/` guarda os dados editáveis do site;
-- `src/pages/` concentra as páginas principais;
-- `src/components/` reúne os blocos visuais reutilizáveis;
-- `src/types/project.ts` define os modelos de dados para projetos, tecnologias e experiências.
+- `src/App.tsx` define o roteamento principal e aplica o tema do documento;
+- `src/data/` concentra textos, projetos, tecnologias, experiências e links configuráveis;
+- `src/components/` reúne blocos visuais reutilizáveis e layout compartilhado;
+- `src/pages/` organiza as páginas públicas do portfólio;
+- `mini-erp/` é um subprojeto independente, com backend PHP e documentação específica;
+- o site em si não depende de backend externo para funcionar como portfólio estático.
 
-## Pré-requisitos
+## Tema e estilo
 
-- Node.js 20.19.0 ou superior;
-- npm ou outro gerenciador de pacotes compatível com os arquivos do projeto.
+O tema do portfólio é implementado por meio de `data-theme` no `document.documentElement` e de variáveis CSS definidas em `src/App.css`. O código também verifica a preferência de tema do sistema e salva a escolha do usuário em `localStorage` quando ela é alterada manualmente.
 
-## Instalação local
+Esse comportamento aparece em `src/App.tsx` e é usado para manter uma visualização clara tanto em modo claro quanto em modo escuro.
 
-```bash
-git clone <url-do-repositorio>
-cd levicavadas.dev
-npm install
-npm run dev
-```
+## Dados e conteúdo
 
-A aplicação ficará disponível em uma porta local do Vite; normalmente a URL é `http://localhost:5173`.
+Os textos e as informações principais do site são mantidos em arquivos do diretório `src/data/`:
 
-## Scripts disponíveis
+- `site.ts`: perfil, nome, e-mail e links públicos;
+- `projects.ts`: projetos e arquitetura descrita por item;
+- `experience.ts`: histórico profissional e contextos relevantes;
+- `technologies.ts`: tecnologias e categoria de uso;
+- `github.ts`: repositórios destacados.
 
-No `package.json` existem os scripts:
+Essa estrutura permite que a documentação e a apresentação do portfólio sejam atualizadas sem duplicar conteúdo entre componentes.
 
-```bash
-npm run dev
-npm run build
-npm run lint
-```
+## Demo do Mini ERP
 
-- `npm run dev`: inicia o ambiente de desenvolvimento;
-- `npm run build`: gera a build de produção;
-- `npm run lint`: valida regras do ESLint.
+A demo do Mini ERP exibida pelo portfólio é uma apresentação visual do fluxo do sistema, não uma aplicação administrativa funcional em produção. O comportamento real está documentado em `src/pages/ProjectDemoPage.tsx`:
 
-## Configuração de dados pessoais
+- os dados são estáticos;
+- o componente exibe uma mensagem de somente leitura;
+- a interface mostra dashboard, clientes, produtos e vendas fictícios;
+- não há persistência real de alterações no navegador.
 
-Os dados pessoais e de contato ficam em `src/data/site.ts`.
+## APIs e integrações
 
-```ts
-export const siteConfig = {
-  name: 'Levi Cavadas',
-  domain: 'https://levicavadas.dev',
-  role: 'Desenvolvimento de software',
-  location: '',
-  email: '',
-  githubUrl: '',
-  linkedinUrl: '',
-  heroDescription:
-    'Desenvolvimento de software com foco em interfaces claras, aplicações úteis e soluções que são fáceis de manter.',
-  about:
-    'Eu gosto de construir software com foco em clareza, manutenção e utilidade prática. Também me interessa transformar ideias em projetos pequenos, funcionais e fáceis de evoluir.',
-}
-```
+O portfólio principal não utiliza uma API externa para renderizar o conteúdo do site. A maioria das informações é estática e alimentada pelos arquivos em `src/data/`.
 
-Campos vazios devem permanecer vazios até que o proprietário confirme o dado. Não invente e-mail, perfil do GitHub, LinkedIn ou endereço.
+O Mini ERP em `mini-erp/` é a parte do workspace que possui backend e API própria, com documentação específica em seu diretório. Esse projeto é independente do frontend do portfólio e deve ser tratado como um ambiente separado.
 
-## Como adicionar um projeto
+## Estado do projeto
 
-Os projetos ficam em `src/data/projects.ts`.
+O projeto está em uma etapa de documentação e manutenção do portfolio, com o frontend configurado e com uma demo do Mini ERP integrada como parte da apresentação. A parte administrativa do ERP continua sendo um projeto separado com documentação própria e não deve ser tratada como backend do site principal.
 
-1. Abra o arquivo.
-2. Adicione um novo objeto ao array `projects`.
-3. Informe um `slug` único e legível.
-4. Preencha `title`, `summary`, `description`, `status` e `technologies`.
-5. Defina `demo` e `github` com o status correto:
-   - `available`: link público e válido;
-   - `coming-soon`: ainda não disponível;
-   - `private`: repositório privado ou não compartilhado;
-   - `not-applicable`: sem aplicação ou sem sentido para o projeto.
-6. Complete a `architecture` com visão geral, stacks relevantes, fluxo de dados e decisões técnicas.
-7. Salve o arquivo; a interface e a página de detalhes serão renderizadas automaticamente.
+## Arquivos alterados nesta revisão
 
-Exemplo:
+- `README.md`: reescrito para documentação profissional, removendo tutoriais de instalação e mantendo apenas informações confirmadas no código e na arquitetura do projeto.
 
-```ts
-export const projects: Project[] = [
-  {
-    slug: 'nome-do-projeto',
-    title: 'Nome do Projeto',
-    summary: 'Resumo curto do projeto.',
-    description: 'Descrição completa da necessidade e da solução.',
-    status: 'em desenvolvimento',
-    technologies: ['React', 'TypeScript', 'Node.js'],
-    demo: { url: 'https://example.com', status: 'available' },
-    github: { url: 'https://github.com/usuario/projeto', status: 'available' },
-    architecture: {
-      overview: 'Aplicação web com front-end e API.',
-      frontend: ['React', 'TypeScript'],
-      backend: ['Node.js'],
-      dataFlow: 'O cliente envia requisições para a API e a resposta é exibida em tela.',
-      decisions: [
-        {
-          decision: 'Usar uma API simples para reduzir complexidade.',
-          reason: 'O foco era entregar valor rápido e manter o código fácil de evoluir.',
-        },
-      ],
-    },
-  },
-]
-```
+## Observações finais
 
-> Os exemplos acima servem para orientar a estrutura; o arquivo atual pode permanecer vazio quando não houver projetos reais cadastrados.
-
-## Como documentar a arquitetura de um projeto
-
-Na propriedade `architecture` de cada projeto, o ideal é documentar:
-
-- `overview`: visão geral da solução;
-- `frontend`, `backend`, `database`, `integrations`: tecnologias e módulos principais;
-- `dataFlow`: como os dados circulam entre interfaces e serviços;
-- `decisions`: decisões técnicas com justificativa curta;
-- `structure`: caminhos e responsabilidade de módulos ou diretórios importantes.
-
-Essa estrutura ajuda a manter cada projeto legível e permite que a página de detalhes mostre a arquitetura sem criar páginas manuais para cada caso.
-
-## Como adicionar tecnologias e experiências
-
-### Tecnologias
-
-As tecnologias estão em `src/data/technologies.ts`.
-
-Cada item aceita:
-
-- `name`
-- `category`
-- `description`
-- `status` (`estudando`, `em uso`, `explorando`)
-
-Exemplo:
-
-```ts
-{
-  name: 'Angular',
-  category: 'Front-end',
-  description: 'Exploração de arquitetura e evolução em aplicações web.',
-  status: 'explorando',
-}
-```
-
-### Experiências
-
-As experiências ficam em `src/data/experience.ts`.
-
-Cada item recebe:
-
-- `role`
-- `company`
-- `employmentType`
-- `startDate`
-- `endDate`
-- `isCurrent`
-- `location`
-- `description`
-- `responsibilities`
-- `technologies`
-- `url`
-
-Se ainda não houver um histórico profissional documentado, o componente mostra uma mensagem informativa em vez de criar dados fictícios.
-
-## Build e validação
-
-Para verificar o projeto em um ambiente local:
-
-```bash
-npm install
-npm run build
-npm run lint
-```
+- O README principal foi ajustado para refletir a estrutura real do projeto.
+- Tutoriais de instalação e setup local foram removidos do documento principal.
+- A documentação mantém foco em arquitetura, stack real, organização e funcionalidades implementadas.
+- Não foram inventadas tecnologias, rotas ou integrações que não existam no código atual.
 
 O build foi validado com sucesso pelo comando de produção e o lint também foi executado sem erros neste workspace.
 
