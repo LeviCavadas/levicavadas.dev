@@ -150,9 +150,6 @@ O Mini ERP em `mini-erp/` é a parte do workspace que possui backend e API próp
 
 O projeto está em uma etapa de documentação e manutenção do portfolio, com o frontend configurado e com uma demo do Mini ERP integrada como parte da apresentação. A parte administrativa do ERP continua sendo um projeto separado com documentação própria e não deve ser tratada como backend do site principal.
 
-## Arquivos alterados nesta revisão
-
-- `README.md`: reescrito para documentação profissional, removendo tutoriais de instalação e mantendo apenas informações confirmadas no código e na arquitetura do projeto.
 
 ## Observações finais
 
@@ -161,19 +158,6 @@ O projeto está em uma etapa de documentação e manutenção do portfolio, com 
 - A documentação mantém foco em arquitetura, stack real, organização e funcionalidades implementadas.
 - Não foram inventadas tecnologias, rotas ou integrações que não existam no código atual.
 
-O build foi validado com sucesso pelo comando de produção e o lint também foi executado sem erros neste workspace.
-
-## Publicação
-
-Para publicar em produção:
-
-1. Ajuste as URLs no arquivo `src/data/site.ts`.
-2. Confirme o domínio `levicavadas.dev` no provedor de hospedagem.
-3. Configure as entradas de DNS necessárias para apontar o site para a hospedagem escolhida.
-4. Faça o deploy do build estático gerado em `dist/`.
-5. Verifique se os links e caminhos internos continuam funcionando após a publicação.
-
-Não se deve afirmar que o domínio já está conectado ou publicado sem confirmação técnica do provedor.
 
 ## Variáveis de ambiente
 
@@ -185,7 +169,6 @@ VITE_GITHUB_URL=
 VITE_LINKEDIN_URL=
 ```
 
-Nenhum segredo deve ser adicionado ao repositório público.
 
 ## Próximas melhorias
 
@@ -197,4 +180,4 @@ Nenhum segredo deve ser adicionado ao repositório público.
 
 ## Licença
 
-Ainda não há uma licença definida para este repositório. A escolha de licença precisa ser feita antes de um uso público mais amplo, sem inventar uma licença que não exista.
+
